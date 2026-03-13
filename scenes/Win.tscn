@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://win_scene"]
+
+[ext_resource type="Script" uid="uid://result_screen_script" path="res://scripts/ResultScreen.gd" id="1"]
+
+[node name="Win" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1")
+title_text = "You Win!"
+subtitle_text = "Zombie defeated. Dash to celebrate!"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.086275, 0.160784, 0.231373, 0.8)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+name = "VBoxContainer"
+custom_minimum_size = Vector2(320, 0)
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
+text = "You Win!"
+horizontal_alignment = 1
+vertical_alignment = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Subtitle" type="Label" parent="CenterContainer/VBoxContainer"]
+text = "Zombie defeated. Dash to celebrate!"
+horizontal_alignment = 1
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="Buttons" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+alignment = 1
+
+[node name="RetryButton" type="Button" parent="CenterContainer/VBoxContainer/Buttons"]
+text = "Retry"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer/Buttons"]
+text = "Quit"

@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://ds60n6krsavle" path="res://scenes/Ground.tscn" id="1_elqb8"]
 [ext_resource type="PackedScene" uid="uid://dvlyhuf4uyjqv" path="res://scenes/Player.tscn" id="2_rvslj"]
+[ext_resource type="AudioStream" uid="uid://dpu7f88enu78f" path="res://assets/audio/assets_sound_bgm.wav" id="3_0bbpv"]
+[ext_resource type="PackedScene" uid="uid://ben2mz1ah7nv" path="res://scenes/Zombie.tscn" id="4_wkjxa"]
 
 [node name="Root" type="Node2D" unique_id=918599496]
 
@@ -16,3 +18,10 @@ position = Vector2(576, 394)
 
 [node name="Player" parent="." unique_id=1711962182 instance=ExtResource("2_rvslj")]
 position = Vector2(578, 238)
+
+[node name="Zombie" parent="." unique_id=1838574803 instance=ExtResource("4_wkjxa")]
+position = Vector2(744, 250)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=839148816]
+stream = ExtResource("3_0bbpv")
+autoplay = true

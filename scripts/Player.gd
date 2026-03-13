@@ -1,24 +1,24 @@
 extends CharacterBody2D
 
-@onready var sprite = $AnimatedSprite2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
-@export var gravity = 1000.0
-@export var walk_speed = 200
-@export var jump_speed = -500
-@export var dash_speed = 600
-@export var dash_duration = 0.15
-@export var double_tap_window = 0.25
-@export var dash_cooldown = 0.8
-@export var max_jumps = 2
+@export var gravity: float = 1000.0
+@export var walk_speed: float = 200.0
+@export var jump_speed: float = -500.0
+@export var dash_speed: float = 600.0
+@export var dash_duration: float = 0.15
+@export var double_tap_window: float = 0.25
+@export var dash_cooldown: float = 0.8
+@export var max_jumps: int = 2
 
-var _dash_timer := 0.0
-var _dash_direction := 0
-var _tap_clock := 0.0
-var _last_tap_time := {"left": -1.0, "right": -1.0}
-var _dash_cooldown_timer := 0.0
-var _jumps_left := 0
+var _dash_timer: float = 0.0
+var _dash_direction: int = 0
+var _tap_clock: float = 0.0
+var _last_tap_time: Dictionary[String, float] = {"left": -1.0, "right": -1.0}
+var _dash_cooldown_timer: float = 0.0
+var _jumps_left: int = 0
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	_update_timers(delta)
 	velocity.y += gravity * delta
 
@@ -104,3 +104,15 @@ func _update_animation() -> void:
 		sprite.play("walk")
 	else:
 		sprite.play("idle")
+
+func is_dashing() -> bool:
+	return _dash_timer > 0.0
+
+func hit_by_zombie(source_position: Vector2) -> void:
+	var knockback_dir: float = sign(global_position.x - source_position.x)
+	if knockback_dir == 0:
+		knockback_dir = 1
+	velocity.x = knockback_dir * walk_speed
+	velocity.y = jump_speed * 0.5
+	_dash_timer = 0.0
+	_dash_cooldown_timer = dash_cooldown
