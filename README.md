@@ -30,6 +30,12 @@
 - Jika arah yang sama ditekan dua kali dalam rentang `double_tap_window` dan cooldown dash kosong, dash dimulai ke arah tersebut.
 - Selama dash, `velocity.x` dipaksa ke `dash_speed`, `velocity.y` dijepit ke 0, input gerak diabaikan, dan animasi `slide` diputar.
 
+### Konten Baru: Zombie, Audio, Win/Lose
+- Zombie baru (CharacterBody2D) dari spritesheet Kenney berjalan bolak-balik dengan gravitasi, suara groan loop, dan suara hit. Patrol dibalik saat mencapai batas atau menabrak dinding.
+- Interaksi: dash menabrak zombie mengalahkannya dan memicu layar menang; disentuh saat tidak dash memicu knockback dan layar kalah. Ada `spawn_grace` untuk mencegah kalah instan saat mulai.
+- Audio: groan zombie di-loop lewat `LoopPlayer`; `HitPlayer` untuk tabrakan; BGM otomatis diputar di scene utama.
+- Layar hasil: scene Win/Lose memakai `ResultScreen.gd` dengan tombol Retry (kembali ke Main.tscn) dan Quit.
+
 ### Dash Cooldown
 - Setelah dash dimulai, timer cooldown di-set. Dash baru diblokir sampai timer habis.
 - Cooldown mencegah dash beruntun di udara yang bisa membuat pemain melayang.
